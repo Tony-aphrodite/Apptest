@@ -1,97 +1,84 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# TLBDMManager (Apptest)
 
-# Getting Started
+A fresh React Native 0.82 project for Android and iOS, created with `@react-native-community/cli` and written in TypeScript. It is the untouched starter app: `App.tsx` renders React Native's built-in welcome screen (`NewAppScreen`). It is meant as a clean base for building and testing a mobile app.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+![React Native](https://img.shields.io/badge/React_Native-0.82.1-61DAFB?logo=react&logoColor=black)
+![React](https://img.shields.io/badge/React-19.1.1-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)
+![Node](https://img.shields.io/badge/Node-%3E%3D20-339933?logo=nodedotjs&logoColor=white)
 
-## Step 1: Start Metro
+## Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **One TypeScript codebase for Android and iOS**: app name `TLBDMManager`, registered in `index.js`.
+- **Safe-area handling**: the app is wrapped in `SafeAreaProvider`, and the insets are passed to the screen through `react-native-safe-area-context`.
+- **Light and dark mode**: the status bar style follows the system color scheme (`useColorScheme`).
+- **New Architecture enabled**: Fabric/TurboModules (`newArchEnabled=true`) with the Hermes JS engine (`hermesEnabled=true`).
+- **Ready-made tooling**: ESLint (`@react-native/eslint-config`), Prettier, and Jest with a render smoke test in `__tests__/App.test.tsx`.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Tech stack
+
+| Area | Version / setting |
+| --- | --- |
+| Framework | React Native 0.82.1, React 19.1.1 |
+| Language | TypeScript 5.8 (`@react-native/typescript-config`) |
+| Bundler | Metro (`@react-native/metro-config`) |
+| Android | Kotlin, Gradle 9.0.0 wrapper, minSdk 24, compile/target SDK 36, package `com.tlbdmmanager` |
+| iOS | Swift `AppDelegate`, CocoaPods, deployment target iOS 15.1 |
+| Testing | Jest 29 with the `react-native` preset, `react-test-renderer` |
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 20 or newer (set in `engines` in `package.json`)
+- Follow React Native's [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide:
+  - Android: Android Studio, the Android SDK and a JDK
+  - iOS (macOS only): Xcode, Ruby 2.6.10 or newer, and Bundler for CocoaPods
+
+### Install
 
 ```sh
-# Using npm
-npm start
+npm install
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
+# iOS only: install CocoaPods with Bundler, then the native pods
 bundle install
+cd ios && bundle exec pod install && cd ..
 ```
 
-Then, and every time you update your native dependencies, run:
+### Run
 
 ```sh
-bundle exec pod install
+npm start          # start the Metro dev server
+npm run android    # build and launch on an Android emulator or device
+npm run ios        # build and launch on the iOS Simulator
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Keep Metro running in its own terminal while you use the `android` / `ios` commands. You can also open `android/` in Android Studio or `ios/TLBDMManager.xcworkspace` in Xcode, after `pod install` has run.
+
+### Quality checks
 
 ```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+npm run lint       # ESLint
+npm test           # Jest
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Project structure
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```
+.
+├── App.tsx              Root component (safe area + welcome screen)
+├── index.js             Registers the app with AppRegistry
+├── app.json             App name / display name
+├── __tests__/           Jest render test
+├── android/             Native Android project (Kotlin, Gradle)
+│   └── app/src/main/java/com/tlbdmmanager/   MainActivity, MainApplication
+├── ios/                 Native iOS project (Swift, CocoaPods)
+│   └── TLBDMManager/    AppDelegate, Info.plist, LaunchScreen
+├── metro.config.js, babel.config.js, jest.config.js, tsconfig.json
+└── Gemfile              CocoaPods / Ruby gem versions for iOS
+```
 
-## Step 3: Modify your app
+## Notes
 
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- The Android release build is still signed with the template's debug keystore (`android/app/debug.keystore`). Create your own upload key before publishing to Google Play.
+- The iOS bundle identifier still uses the template default (`org.reactjs.native.example.*`). Change it before shipping.
