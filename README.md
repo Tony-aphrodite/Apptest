@@ -2,6 +2,7 @@
 
 A fresh React Native 0.82 project for Android and iOS, created with `@react-native-community/cli` and written in TypeScript. It is the untouched starter app: `App.tsx` renders React Native's built-in welcome screen (`NewAppScreen`). It is meant as a clean base for building and testing a mobile app.
 
+[![CI](https://github.com/Tony-aphrodite/Apptest/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Tony-aphrodite/Apptest/actions/workflows/ci.yml)
 ![React Native](https://img.shields.io/badge/React_Native-0.82.1-61DAFB?logo=react&logoColor=black)
 ![React](https://img.shields.io/badge/React-19.1.1-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)
